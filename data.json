@@ -1,0 +1,179 @@
+{
+  "navigation": [
+    {
+      "title": "Home",
+      "link": "/"
+    },
+    {
+      "title": "About",
+      "link": "/about"
+    },
+    {
+      "title": "Products",
+      "link": "/product"
+    },
+    {
+      "title": "Store",
+      "link": "/store"
+    },
+    {
+      "title": "Features",
+      "link": "/feature"
+    },
+    {
+      "title": "Blog Article",
+      "link": "/blog"
+    },
+    {
+      "title": "Testimonial",
+      "link": "/testimonial"
+    },
+    {
+      "title": "Contact",
+      "link": "/contact"
+    }
+  ],
+  "heroSlider": [
+    {
+      "image": "http://mivaan-herbs.netlify.app/img/banner-1.jpg",
+      "headline": "Join, Grow, Earn, Repeat & Freedom.",
+      "subheadline": "Welcome to Mivaan Herbs Pvt Ltd",
+      "ctaText": "Explore More",
+      "ctaLink": ""
+    },
+    {
+      "image": "http://mivaan-herbs.netlify.app/img/banner-2.avif",
+      "headline": "Smart Income Starts From Smart Work.",
+      "subheadline": "Welcome to Mivaan Herbs Pvt Ltd",
+      "ctaText": "Explore More",
+      "ctaLink": ""
+    },
+    {
+      "image": "http://mivaan-herbs.netlify.app/img/banner-3.avif",
+      "headline": "Your Success Begins With Us.",
+      "subheadline": "Welcome to Mivaan Herbs Pvt Ltd",
+      "ctaText": "Explore More",
+      "ctaLink": ""
+    }
+  ],
+  "about": {
+    "title": "The success history of Mivaan Herbs in 10 years",
+    "description": "A Decade of Empowering Lives Through Wellness and Financial Freedom Together. Mivaan Herbs has been transforming lives for over 10 years by blending the power of Ayurveda with an ethical and rewarding MLM system. Our mission has always been two-fold — to promote natural wellness and to create sustainable income opportunities for every individual. Celebrating 10 Years of Trust, Growth, Herbal Excellence, and Opportunity. Thousands have joined us on this journey, achieving better health and financial independence. We believe in building a future where health and wealth go hand in hand — naturally, ethically, and with trust."
+  },
+  "products": [
+    {
+      "title": "Green Aloevera",
+      "image": "http://mivaan-herbs.netlify.app/img/product-1.jpg",
+      "price": null,
+      "description": "Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum",
+      "ctaText": "Learn More",
+      "ctaLink": "/product"
+    },
+    {
+      "title": "Black Aloevera",
+      "image": "http://mivaan-herbs.netlify.app/img/product-2.jpg",
+      "price": null,
+      "description": "Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum",
+      "ctaText": "Learn More",
+      "ctaLink": "/product"
+    },
+    {
+      "title": "Spiced Aloevera",
+      "image": "http://mivaan-herbs.netlify.app/img/product-3.jpg",
+      "price": null,
+      "description": "Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum",
+      "ctaText": "Learn More",
+      "ctaLink": "/product"
+    },
+    {
+      "title": "Organic Aloevera",
+      "image": "http://mivaan-herbs.netlify.app/img/product-4.jpg",
+      "price": null,
+      "description": "Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum",
+      "ctaText": "Learn More",
+      "ctaLink": "/product"
+    },
+    {
+      "title": "Nature close Aloevera",
+      "image": "http://mivaan-herbs.netlify.app/img/store-product-1.jpg",
+      "price": "$19.00",
+      "description": "Aliqu diam amet diam et eos. Clita erat ipsum lorem erat ipsum lorem sit sed",
+      "ctaText": "More Detail",
+      "ctaLink": "/store"
+    },
+    {
+      "title": "Green Aloevera tulsi",
+      "image": "http://mivaan-herbs.netlify.app/img/store-product-2.jpg",
+      "price": "$19.00",
+      "description": "Aliqu diam amet diam et eos. Clita erat ipsum lorem erat ipsum lorem sit sed",
+      "ctaText": "More Detail",
+      "ctaLink": "/store"
+    },
+    {
+      "title": "Instant Aloevera premix",
+      "image": "http://mivaan-herbs.netlify.app/img/store-product-3.jpg",
+      "price": "$19.00",
+      "description": "Aliqu diam amet diam et eos. Clita erat ipsum lorem erat ipsum lorem sit sed",
+      "ctaText": "More Detail",
+      "ctaLink": "/store"
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Client Name",
+      "title": "Profession",
+      "photo": "http://mivaan-herbs.netlify.app/img/testimonial-1.jpg",
+      "quote": "Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo"
+    },
+    {
+      "name": "Client Name",
+      "title": "Profession",
+      "photo": "http://mivaan-herbs.netlify.app/img/testimonial-2.jpg",
+      "quote": "Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo"
+    },
+    {
+      "name": "Client Name",
+      "title": "Profession",
+      "photo": "http://mivaan-herbs.netlify.app/img/testimonial-3.jpg",
+      "quote": "Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo"
+    }
+  ],
+  "Featured": [
+    {
+      "title": "The history of Mivaan Herbs in the world",
+      "snippet": "Over the past decade, Mivaan Herbs has grown into a trusted name in the herbal MLM industry. Our journey began with a vision to bring pure, effective herbal products to every home while opening doors of financial freedom to people from all walks of life. Today, we proudly stand on a strong foundation of trust, transparency, and transformation — delivering both health benefits and a reliable earning platform to thousands of families.",
+      "link": "/blog"
+    }
+  ],
+  "footer": {
+    "contact": {
+      "email": [
+        "info@example.com",
+        "support@example.com"
+      ],
+      "phone": [
+        "+012 345 67890"
+      ],
+      "address": "123 Street, New York, USA"
+    },
+    "socialLinks": [],
+    "links": [
+      {
+        "title": "About Us",
+        "link": "/about"
+      },
+      {
+        "title": "Contact Us",
+        "link": "/contact"
+      },
+      {
+        "title": "Terms & Condition",
+        "link": "/terms"
+      },
+      {
+        "title": "Privacy Policy",
+        "link": "/privacy"
+      }
+    ]
+  }
+}
