@@ -302,24 +302,23 @@
           const result = await response.json();
           console.log(JSON.stringify(result) + "xyz");
 
-          if (response.ok) {
-            console.log(response);
+         if (response.ok) {
+  localStorage.setItem("username", result.username);
+  localStorage.setItem("MYsponsor_id", result.MYsponsor_id);
+  localStorage.setItem("userInfo", JSON.stringify(result));
 
-            console.log("Response Result:", result);
+  // Show a beautiful success popup
+  Swal.fire({
+    icon: 'success',
+    title: 'Signup Successful!',
+    text: 'Welcome to Mivaan Herbs!',
+    confirmButtonColor: '#4caf50',
+  }).then(() => {
+    // Optional: redirect to dashboard or login
+    window.location.href = 'login.html';
+  });
+}
 
-            // Store necessary data in localStorage
-            localStorage.setItem("username", result.username);
-            localStorage.setItem("MYsponsor_id", result.MYsponsor_id);
-
-            // Optional: store the full result if needed
-            localStorage.setItem("userInfo", JSON.stringify(result));
-
-            messageDiv.textContent = "Signup successful!";
-            messageDiv.style.color = "green";
-          } else {
-            messageDiv.textContent = result.message || `Error-${result.error}`;
-            messageDiv.style.color = "red";
-          }
         } catch (error) {
           console.error("Error:", error);
           messageDiv.textContent = `Error-${error}`;
@@ -334,6 +333,8 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <script src="js/main.js"></script>
   </body>
