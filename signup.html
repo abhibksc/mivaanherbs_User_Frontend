@@ -272,12 +272,49 @@
     </div>
     <!-- Footer End -->
 
+<!-- Loading Modal -->
+<div
+  id="loadingModal"
+  style="
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  "
+>
+  <div
+    style="
+      background: white;
+      padding: 30px 50px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    "
+  >
+    <div class="spinner-border text-success" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3">Processing your registration...</p>
+  </div>
+</div>
+
+
+
+
     <script>
+      const loadingModal = document.getElementById("loadingModal");
       const form = document.getElementById("signupForm");
       const messageDiv = document.getElementById("responseMessage");
 
       form.addEventListener("submit", async function (e) {
         e.preventDefault();
+       loadingModal.style.display = "flex";
 
         const data = {
           full_name: document.getElementById("full_name_input").value,
@@ -303,9 +340,6 @@
           console.log(JSON.stringify(result) + "xyz");
 
          if (response.ok) {
-  localStorage.setItem("username", result.username);
-  localStorage.setItem("MYsponsor_id", result.MYsponsor_id);
-  localStorage.setItem("userInfo", JSON.stringify(result));
 
   // Show a beautiful success popup
   Swal.fire({
@@ -324,6 +358,9 @@
           messageDiv.textContent = `Error-${error}`;
           messageDiv.style.color = "red";
         }
+        finally {
+    loadingModal.style.display = "none"; // Hide loading modal
+  }
       });
     </script>
 

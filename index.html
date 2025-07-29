@@ -70,7 +70,10 @@
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
-                        <a href="signup.html" class="nav-item nav-link">Login/SignUp</a>
+                   <span id="authButtonContainer"></span>
+
+                           <!-- <a href="signup.html" class="nav-item nav-link">Login/SignUp</a> -->
+                        
                     </div>
                     <div class="border-start ps-4 d-block d-lg-block">
                         <div class="user-widget position-relative">
@@ -710,6 +713,29 @@
             }
         });
     </script>
+
+    <script>
+  const isLoggedIn = localStorage.getItem("token"); // Or any key you're using to store login state
+  const authContainer = document.getElementById("authButtonContainer");
+
+  if (authContainer) {
+    if (isLoggedIn) {
+      authContainer.innerHTML = `<a href="javascript:void(0)" id="logoutBtn" class="nav-item nav-link">Logout</a>`;
+    } else {
+      authContainer.innerHTML = `<a href="signup.html" class="nav-item nav-link">Login/SignUp</a>`;
+    }
+
+    document.addEventListener("click", function (e) {
+      if (e.target.id === "logoutBtn") {
+        localStorage.removeItem("token"); // Clear login token
+        localStorage.removeItem("userName"); // Clear login token
+        localStorage.removeItem("userId"); // Clear login token
+
+        location.reload(); // Refresh to update UI
+      }
+    });
+  }
+</script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>

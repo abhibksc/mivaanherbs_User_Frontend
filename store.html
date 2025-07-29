@@ -210,20 +210,8 @@
                 <h4 class="text-primary">$19.00</h4>
               </div>
               <div class="store-overlay">
-                <a href="" class="btn btn-primary rounded-pill py-2 px-4 m-2"
-                  >More Detail <i class="fa fa-arrow-right ms-2"></i
-                ></a>
-                <a
-                  href="javascript:void(0)"
-                  class="btn btn-dark rounded-pill py-2 px-4 m-2 add-to-cart-btn"
-                  data-id="1"
-                  data-name="Nature close Aloevera"
-                  data-price="19.00"
-                  data-img="img/store-product-1.jpg"
-                >
-                  Add to Cart <i class="fa fa-cart-plus ms-2"></i>
-                </a>
-                <a href="javascript:void(0)" class="btn btn-success ms-3" onclick="purchaseItems()">Purchase Now</a>
+                          <a href="product-detail.html?id=1" class="btn btn-sm btn-outline-primary view-detail-btn" data-id="1" data-name="Nature Close Aloevera" data-price="19.00" data-img="img/store-product-1.jpg" data-desc="This is a detailed description for Nature Close Aloevera.">View Detail</a>
+
 
               </div>
             </div>
@@ -247,20 +235,9 @@
                 <h4 class="text-primary">$19.00</h4>
               </div>
               <div class="store-overlay">
-                <a href="" class="btn btn-primary rounded-pill py-2 px-4 m-2"
-                  >More Detail <i class="fa fa-arrow-right ms-2"></i
-                ></a>
-                <a
-                  href="javascript:void(0)"
-                  class="btn btn-dark rounded-pill py-2 px-4 m-2 add-to-cart-btn"
-                  data-id="2"
-                  data-name="Green Aloevera tulsi"
-                  data-price="19.00"
-                  data-img="img/store-product-2.jpg"
-                >
-                  Add to Cart <i class="fa fa-cart-plus ms-2"></i>
-                </a>
-                <a href="javascript:void(0)" class="btn btn-success ms-3" onclick="purchaseItems()">Purchase Now</a>
+
+           <a href="product-detail.html?id=2" class="btn btn-sm btn-outline-primary view-detail-btn" data-id="1" data-name="Nature Close Aloevera" data-price="19.00" data-img="img/store-product-1.jpg" data-desc="This is a detailed description for Nature Close Aloevera.">View Detail</a>
+
 
               </div>
             </div>
@@ -284,26 +261,14 @@
                 <h4 class="text-primary">$19.00</h4>
               </div>
               <div class="store-overlay">
-                <a href="" class="btn btn-primary rounded-pill py-2 px-4 m-2"
-                  >More Detail <i class="fa fa-arrow-right ms-2"></i
-                ></a>
-                <a
-                  href="javascript:void(0)"
-                  class="btn btn-dark rounded-pill py-2 px-4 m-2 add-to-cart-btn"
-                  data-id="1"
-                  data-name="Nature close Aloevera"
-                  data-price="19.00"
-                  data-img="img/store-product-1.jpg"
-                >
-                  Add to Cart <i class="fa fa-cart-plus ms-2"></i>
-                </a>
+                           <a href="product-detail.html?id=3" class="btn btn-sm btn-outline-primary view-detail-btn" data-id="1" data-name="Nature Close Aloevera" data-price="19.00" data-img="img/store-product-1.jpg" data-desc="This is a detailed description for Nature Close Aloevera.">View Detail</a>
+
               </div>
             </div>
           </div>
           <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-            <a href="" class="btn btn-primary rounded-pill py-3 px-5"
-              >View More Products</a
-            >
+           <a href="product-listing.html" class="btn btn-primary rounded-pill py-3 px-5">View More Products</a>
+
           </div>
         </div>
       </div>
@@ -408,70 +373,8 @@
     ></a>
 
 
-    <script>
-function purchaseItems() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    if (cart.length === 0) {
-        alert('Your cart is empty!');
-        return;
-    }
-
-    const token = localStorage.getItem('authToken'); // or wherever your token is stored
-    const purchasePayload = {
-        products: cart,
-        user: {
-            name: document.getElementById('fullName')?.innerText || "Guest",
-            phone: document.getElementById('phone')?.innerText || "N/A",
-        }
-    };
-
-    fetch('https://your-api-endpoint.com/api/purchase', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` // if using token auth
-        },
-        body: JSON.stringify(purchasePayload)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Purchase success:', data);
-        alert('Purchase completed successfully!');
-        localStorage.removeItem('cart'); // Clear cart
-    })
-    .catch(error => {
-        console.error('Purchase failed:', error);
-        alert('Error during purchase. Please try again.');
-    });
-}
-</script>
 
 
-    <script>
-      document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
-        button.addEventListener("click", function () {
-          const product = {
-            id: this.dataset.id,
-            name: this.dataset.name,
-            price: this.dataset.price,
-            img: this.dataset.img,
-            quantity: 1,
-          };
-
-          let cart = JSON.parse(localStorage.getItem("cart")) || [];
-          const index = cart.findIndex((item) => item.id === product.id);
-          if (index > -1) {
-            cart[index].quantity += 1;
-          } else {
-            cart.push(product);
-          }
-
-          localStorage.setItem("cart", JSON.stringify(cart));
-          alert(`${product.name} added to cart!`);
-        });
-      });
-    </script>
 
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
