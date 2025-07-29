@@ -440,7 +440,7 @@
 
         try {
           const response = await fetch(
-            "http://localhost:3000/api/login",
+            "https://mivaanherbs.onrender.com/api/login",
             {
               method: "POST",
               headers: {
@@ -501,7 +501,7 @@
 
     <script>
       window.addEventListener("DOMContentLoaded", function () {
-        const storedUsername = localStorage.getItem("username");
+        const storedUsername = localStorage.getItem("userName");
 
         console.log(storedUsername);
 
