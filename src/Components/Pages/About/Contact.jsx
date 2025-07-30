@@ -17,22 +17,20 @@ const Contact = () => {
             <div className="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-full bg-green-600 text-white text-xl">
               <FaEnvelope />
             </div>
-            <p className="text-gray-700">info@example.com</p>
-            <p className="text-gray-700">support@example.com</p>
+            <p className="text-gray-700">Mivaanherbspvtltd@gmail.com</p>
           </div>
           <div className="text-center">
             <div className="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-full bg-green-600 text-white text-xl">
               <FaPhone />
             </div>
-            <p className="text-gray-700">+012 345 67890</p>
-            <p className="text-gray-700">+012 345 67890</p>
+            <p className="text-gray-700">+91 6205131757</p>
           </div>
           <div className="text-center">
             <div className="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-full bg-green-600 text-white text-xl">
               <FaMapMarkerAlt />
             </div>
-            <p className="text-gray-700">123 Street</p>
-            <p className="text-gray-700">New York, USA</p>
+            <p className="text-gray-700"> 16, 2nd Floor, Dubash Bldg, Tribhovan Rd</p>
+            <p className="text-gray-700">Off Lamington Road, Delhi</p>
           </div>
         </div>
 

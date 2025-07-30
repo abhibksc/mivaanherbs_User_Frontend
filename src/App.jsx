@@ -36,6 +36,7 @@ const AppContent = () => {
                 <div className="">
                   <Header />
                   <BannerCarousel />
+                  <JoinUs/>
 
                   <About />
                   <Products />
