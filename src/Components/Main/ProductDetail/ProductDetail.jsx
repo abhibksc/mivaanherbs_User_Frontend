@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import product1 from "../../../assets/Images/store-product-1.jpg";
-import product2 from "../../../assets/Images/store-product-2.jpg";
-import product3 from "../../../assets/Images/store-product-3.jpg";
+import product1 from "../../../assets/Images/newProduct.jpg";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -14,26 +12,10 @@ const products = [
     title: "Nature close Aloevera",
     description:
       "Aliqu diam amet diam et eos. Clita erat ipsum lorem erat ipsum lorem sit sed",
-    price: "$19.00",
-    amount: 1900,
-  },
-  {
-    id: 2,
-    image: product2,
-    title: "Green Aloevera tulsi",
-    description:
-      "Aliqu diam amet diam et eos. Clita erat ipsum lorem erat ipsum lorem sit sed",
-    price: "$19.00",
-    amount: 1900,
-  },
-  {
-    id: 3,
-    image: product3,
-    title: "Instant Aloevera premix",
-    description:
-      "Aliqu diam amet diam et eos. Clita erat ipsum lorem erat ipsum lorem sit sed",
-    price: "$19.00",
-    amount: 1900,
+    price: "₹2,083.00",
+    DP: "₹1,670.00",
+    BP: "₹16.5",
+    amount: 2083,
   },
 ];
 
@@ -83,24 +65,36 @@ const ProductDetail = () => {
   };
 
   if (!product) {
-    return <p className="text-center mt-10">Product not found</p>;
+    return <p className="text-center mt-10 text-red-500">Product not found</p>;
   }
 
   return (
-    <section className="max-w-4xl mx-auto py-16 px-4">
+    <section className="max-w-5xl mx-auto py-16 px-4">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row">
-        <img
-          src={product.image}
-          alt={product.title}
-          className="w-full md:w-1/2 object-cover h-96"
-        />
-        <div className="p-6 md:w-1/2">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">{product.title}</h2>
-          <p className="text-gray-600 mb-4">{product.description}</p>
-          <p className="text-green-700 font-semibold text-xl mb-6">{product.price}</p>
+        <div className="w-full md:w-1/2 max-h-[400px]">
+          <img
+            src={product.image}
+            alt={product.title}
+            className="w-full h-full object-contain p-4"
+          />
+        </div>
+        <div className="p-6 md:w-1/2 flex flex-col justify-between">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-800 mb-2">{product.title}</h2>
+            <p className="text-gray-600 mb-4 text-sm">{product.description}</p>
+
+            <div className="space-y-1 mb-6">
+              <p className="text-gray-700 text-md">
+                <span className="font-semibold">MRP:</span>{" "}
+                <span className="line-through text-red-500">{product.price}</span>
+              </p>
+              <p className="text-green-700 text-lg font-bold">DP: {product.DP}</p>
+              <p className="text-blue-700 text-md font-medium">BP: {product.BP}</p>
+            </div>
+          </div>
 
           <button
-            className="bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-700 transition"
+            className="bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-700 transition self-start"
             onClick={() => setShowModal(true)}
           >
             Buy Now
@@ -111,7 +105,7 @@ const ProductDetail = () => {
       {/* Confirm Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-96 shadow-lg">
+          <div className="bg-white rounded-lg p-6 w-[90%] max-w-md shadow-lg">
             <h3 className="text-lg font-semibold mb-4">Confirm Purchase</h3>
             <p className="mb-4">
               Are you sure you want to activate this product for{" "}

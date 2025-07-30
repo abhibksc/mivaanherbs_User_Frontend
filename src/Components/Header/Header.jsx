@@ -36,16 +36,6 @@ const Header = () => {
           <NavLink to="/store" label="Store" />
           <NavLink to="/joinUs" label="Join Us" />
 
-          {/* Dropdown Menu */}
-          <div className="relative group">
-            <span className="cursor-pointer text-gray-700 hover:text-green-600">More</span>
-            <div className="absolute hidden group-hover:block bg-white shadow-md rounded mt-2 w-40 z-50">
-              <DropdownLink to="/feature" label="Features" />
-              <DropdownLink to="/blog" label="Blog Article" />
-              <DropdownLink to="/testimonial" label="Testimonial" />
-              <DropdownLink to="/404" label="404 Page" />
-            </div>
-          </div>
 
           <NavLink to="/contact" label="Contact" />
         </nav>

@@ -1,5 +1,5 @@
 import React from "react";
-import dirImage from "../../../assets/Images/dirImage.jpg"
+import dirImage from "../../../assets/Images/dirImage.jpg";
 
 const Article = () => {
   return (
@@ -10,9 +10,15 @@ const Article = () => {
           <img
             className="w-full h-auto max-h-[500px] object-contain transition-transform duration-500 group-hover:scale-105"
             src={dirImage}
-            alt="Mivaan Director"
+            alt="Mr. Rajkumar - Director"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl flex items-end p-4 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="text-white">
+              <p className="text-sm">Director</p>
+              <h3 className="text-lg font-semibold">Mr. Rajkumar</h3>
+            </div>
+          </div>
         </div>
 
         {/* Right - Content */}
