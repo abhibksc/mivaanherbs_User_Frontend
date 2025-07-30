@@ -89,7 +89,7 @@ const ProductDetail = () => {
                 <span className="line-through text-red-500">{product.price}</span>
               </p>
               <p className="text-green-700 text-lg font-bold">DP: {product.DP}</p>
-              <p className="text-blue-700 text-md font-medium">BP: {product.BP}</p>
+              <p className="text-blue-700 text-md font-medium">Bv: {product.BP}</p>
             </div>
           </div>
 

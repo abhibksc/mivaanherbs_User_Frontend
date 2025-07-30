@@ -11,7 +11,7 @@ const products = [
       "Aliqu diam amet diam et eos. Clita erat ipsum lorem erat ipsum lorem sit sed",
     price: "₹2,083.00",
     DP: "₹1,670.00",
-    BP: "₹16.5",
+    Bv: "₹16.5",
   },
 ];
 
@@ -51,7 +51,7 @@ const Store = () => {
               <div className="space-y-1 text-green-700 text-md font-semibold">
                 <p>MRP: <span className=" text-red-500">{product.price}</span></p>
                 <p>DP: {product.DP}</p>
-                <p>BP: {product.BP}</p>
+                <p>Bv: {product.Bv}</p>
               </div>
             </div>
 
