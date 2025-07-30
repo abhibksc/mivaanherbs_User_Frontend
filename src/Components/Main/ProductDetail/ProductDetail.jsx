@@ -35,6 +35,12 @@ const ProductDetail = () => {
     const token = localStorage.getItem("token");
     const packageAmount = product.amount;
 
+    if(!token){
+
+      navigate("/authentication")
+
+    }
+
     try {
       const res = await fetch(`${BASE_URL}/user/activate`, {
         method: "POST",

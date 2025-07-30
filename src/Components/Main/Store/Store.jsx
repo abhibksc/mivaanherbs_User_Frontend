@@ -68,9 +68,11 @@ const Store = () => {
       </div>
 
       <div className="mt-12 text-center">
-        <button className="bg-green-600 text-white py-3 px-6 rounded-full hover:bg-green-700 transition duration-200">
+        <Link to={`/store`}>        <button className="bg-green-600 text-white py-3 px-6 rounded-full hover:bg-green-700 transition duration-200">
           View More Products
         </button>
+        </Link>
+
       </div>
     </section>
   );
