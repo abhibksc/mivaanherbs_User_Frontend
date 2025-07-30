@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './modalAnimation.css'; // Optional: for animation styling
 
 const AuthForm = () => {
+  const [showCongratsModal, setShowCongratsModal] = useState(false);
+  const [registeredData, setRegisteredData] = useState({});
   const [activeTab, setActiveTab] = useState('login');
   const [formData, setFormData] = useState({
     full_name: '',
@@ -15,7 +18,6 @@ const AuthForm = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
 
-  // ✅ Use Vite environment variable
   const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   const handleInput = (e) => {
@@ -31,26 +33,20 @@ const AuthForm = () => {
     setMessage(null);
 
     try {
-
-
       if (activeTab === 'register') {
         const { full_name, mobile, email, password, referal_id, country_id } = formData;
         const res = await axios.post(`${API_URL}/user-register`, {
           full_name, mobile, email, password, referal_id, country_id
         });
+
         setMessage(res.data.message || 'Registered successfully');
         localStorage.setItem('username', res.data.username);
 
-        setActiveTab('login');
+        // Add password to modal data
+        setRegisteredData({ ...res.data, password });
+        setShowCongratsModal(true);
 
-
-
-
-      } 
-      
-      
-      
-      else {
+      } else {
         const { username_or_mobile, password } = formData;
         const res = await axios.post(`${API_URL}/user-login`, {
           username_or_mobile, password
@@ -59,7 +55,7 @@ const AuthForm = () => {
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('username', res.data.userName);
         setMessage('Login successful');
-        window.location.href = '/'; // redirect as needed
+        window.location.href = '/';
       }
     } catch (err) {
       setMessage(err.response?.data?.error || 'Something went wrong');
@@ -69,7 +65,7 @@ const AuthForm = () => {
   };
 
   return (
-    <div className="max-w-xl min-h-screen mx-auto mt-10 p-6 bg-white">
+    <div className="max-w-xl min-h-screen mx-auto mt-10 p-6 bg-white relative">
       <div className="flex justify-center mb-4">
         <button
           onClick={() => setActiveTab('login')}
@@ -114,6 +110,32 @@ const AuthForm = () => {
       </form>
 
       {message && <p className="mt-4 text-center text-sm text-red-500">{message}</p>}
+
+      {/* ✅ Animated Congrats Modal */}
+      {showCongratsModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full animate-bounceIn">
+            <h2 className="text-2xl font-bold text-green-600 text-center mb-2">🎉 Congratulations!</h2>
+            <p className="text-center text-gray-700">{registeredData.message}</p>
+
+            <div className="mt-4 text-sm text-gray-600 space-y-1">
+              <p><strong>Username:</strong> {registeredData.username}</p>
+              <p><strong>Sponsor ID:</strong> {registeredData.MYsponsor_id}</p>
+              <p><strong>Password:</strong> {registeredData.password}</p>
+            </div>
+
+            <button
+              onClick={() => {
+                setShowCongratsModal(false);
+                setActiveTab('login');
+              }}
+              className="mt-6 w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+            >
+              Proceed to Login
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
