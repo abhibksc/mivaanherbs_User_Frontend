@@ -1,4 +1,5 @@
 import React from "react";
+import dirImage from "../../../assets/Images/dirImage.jpg"
 
 const Article = () => {
   return (
@@ -8,7 +9,7 @@ const Article = () => {
         <div className="relative group overflow-hidden rounded-2xl shadow-xl">
           <img
             className="w-full h-auto max-h-[500px] object-contain transition-transform duration-500 group-hover:scale-105"
-            src="https://firebasestorage.googleapis.com/v0/b/wipenexit-48482.appspot.com/o/director.png?alt=media&token=1b04a17d-01cd-4655-b02f-02012e424a64"
+            src={dirImage}
             alt="Mivaan Director"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

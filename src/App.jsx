@@ -17,6 +17,7 @@ import AuthForm from "./Components/Auth/AuthForm";
 import ProductDetail from "./Components/Main/ProductDetail/ProductDetail";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import JoinUs from "./Components/Pages/About/JoinUs";
 
 
 const AppContent = () => {
@@ -77,6 +78,23 @@ const AppContent = () => {
               </>
             }
           />
+
+
+
+             <Route
+            path="/joinUs"
+            element={
+              <>
+                <div className="">
+                  <Header />
+                  <JoinUs />
+                  <Footer />
+                </div>
+              </>
+            }
+          />
+
+
 
 
           

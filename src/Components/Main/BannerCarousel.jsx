@@ -14,7 +14,7 @@ const BannerCarousel = () => {
   ];
 
   return (
-    <div className="w-screen h-screen">
+    <div className="">
       <ImageCarousel images={bannerImages} autoplayInterval={3000} />
     </div>
   );

@@ -10,7 +10,7 @@ const ImageCarousel = ({
   responsiveOptions = [],
 }) => {
   const itemTemplate = (image, index) => (
-    <div className="relative w-screen h-screen overflow-hidden">
+    <div className="relative w-full h-[300px] md:h-[500px] overflow-hidden">
       {/* Background Image */}
       <img
         src={image.src}
@@ -20,7 +20,7 @@ const ImageCarousel = ({
 
       {/* Centered Animated Text */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <h1 className="text-white text-4xl md:text-6xl font-bold text-center px-4 animate-zoomOut">
+        <h1 className="text-white text-2xl md:text-5xl font-bold text-center px-4 animate-zoomOut">
           {image.text}
         </h1>
       </div>

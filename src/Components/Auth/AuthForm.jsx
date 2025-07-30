@@ -1,6 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './modalAnimation.css'; // Optional: for animation styling
+import './modalAnimation.css';
+
+// Country list
+const countries = [
+  { id: 'IN', name: 'India' },
+  { id: 'US', name: 'United States' },
+  { id: 'GB', name: 'United Kingdom' },
+  { id: 'CA', name: 'Canada' },
+  { id: 'AU', name: 'Australia' },
+  { id: 'DE', name: 'Germany' },
+  { id: 'FR', name: 'France' },
+  { id: 'BR', name: 'Brazil' },
+  { id: 'ZA', name: 'South Africa' },
+  { id: 'JP', name: 'Japan' },
+  // Add more as needed
+];
 
 const AuthForm = () => {
   const [showCongratsModal, setShowCongratsModal] = useState(false);
@@ -42,10 +57,8 @@ const AuthForm = () => {
         setMessage(res.data.message || 'Registered successfully');
         localStorage.setItem('username', res.data.username);
 
-        // Add password to modal data
         setRegisteredData({ ...res.data, password });
         setShowCongratsModal(true);
-
       } else {
         const { username_or_mobile, password } = formData;
         const res = await axios.post(`${API_URL}/user-login`, {
@@ -87,7 +100,23 @@ const AuthForm = () => {
             <input name="full_name" placeholder="Full Name" onChange={handleInput} required className="w-full p-2 border rounded" />
             <input name="mobile" placeholder="Mobile" onChange={handleInput} required className="w-full p-2 border rounded" />
             <input name="email" placeholder="Email" onChange={handleInput} required className="w-full p-2 border rounded" />
-            <input name="country_id" placeholder="Country ID" onChange={handleInput} required className="w-full p-2 border rounded" />
+            
+            {/* Country dropdown */}
+            <select
+              name="country_id"
+              onChange={handleInput}
+              value={formData.country_id}
+              required
+              className="w-full p-2 border rounded"
+            >
+              <option value="">Select Country</option>
+              {countries.map((country) => (
+                <option key={country.id} value={country.id}>
+                  {country.name}
+                </option>
+              ))}
+            </select>
+
             <input name="referal_id" placeholder="Referral ID (Optional)" onChange={handleInput} className="w-full p-2 border rounded" />
             <input type="password" name="password" placeholder="Password" onChange={handleInput} required className="w-full p-2 border rounded" />
           </>
@@ -111,7 +140,6 @@ const AuthForm = () => {
 
       {message && <p className="mt-4 text-center text-sm text-red-500">{message}</p>}
 
-      {/* ✅ Animated Congrats Modal */}
       {showCongratsModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full animate-bounceIn">
