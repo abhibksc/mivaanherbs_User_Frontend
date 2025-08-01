@@ -82,6 +82,8 @@ const AppContent = () => {
 
 
 
+
+
              <Route
             path="/joinUs"
             element={
@@ -191,6 +193,20 @@ const AppContent = () => {
             }
           />
 
+      <Route path="/authentication/ref/:refId" 
+      
+         element={
+              <>
+                <div className="">
+                  <Header />
+                  <AuthForm />
+                  <Footer />
+                </div>
+              </>
+            }
+      
+      
+      />
 
 
 

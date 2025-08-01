@@ -33,7 +33,7 @@ const ProductDetail = () => {
 
     const username = localStorage.getItem("username");
     const token = localStorage.getItem("token");
-    const packageAmount = product.amount;
+    const packageAmount = product.DP;
 
     if(!token){
 
@@ -42,7 +42,8 @@ const ProductDetail = () => {
     }
 
     try {
-      const res = await fetch(`${BASE_URL}/user/activate`, {
+      
+      const res = await fetch(`${BASE_URL}/user/purchase-item`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
