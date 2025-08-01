@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./modalAnimation.css";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // Country list
 const countries = [
@@ -54,7 +55,7 @@ const AuthForm = () => {
      localStorage.removeItem("username");
      localStorage.removeItem("other_sponsor_id");
      localStorage.removeItem("MYsponsor_id");
-
+toast.warn("Please SingUp or Login!")
 
 
   }, [refId, navigate]);
