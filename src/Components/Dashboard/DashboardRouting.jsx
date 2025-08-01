@@ -14,6 +14,7 @@ import ReferAndEarnPage from "./ReferEarnPage/ReferEarnPage";
 const DashboardRouting = () => {
   return (
   <div className="flex flex-col md:flex-row w-full min-h-screen">
+    
   <Sidebar />
   
   <div className="flex-1 mt-16 md:mt-0 p-4">

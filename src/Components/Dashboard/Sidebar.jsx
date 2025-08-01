@@ -52,7 +52,11 @@ const Sidebar = () => {
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
           md:translate-x-0 md:static md:block`}
       >
-        <h2 className="text-2xl font-bold mb-8 text-center tracking-wide">🛠 User</h2>
+        <h2 className="text-2xl font-bold mb-8 text-center tracking-wide" onClick={()=>{
+          
+          navigate("/dashboard/profile")
+           closeSidebar()
+          }}>🛠 User</h2>
 
         <div className="space-y-3">
           {modules.map((mod) => {
