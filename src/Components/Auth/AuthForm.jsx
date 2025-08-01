@@ -50,8 +50,13 @@ const AuthForm = () => {
       other_sponsor_id: refId || localStorage.getItem("other_sponsor_id"),
     }));
 
-    console.log(localStorage.getItem("other_sponsor_id"));
-    console.log(localStorage.getItem(refId));
+     localStorage.removeItem("token");
+     localStorage.removeItem("username");
+     localStorage.removeItem("other_sponsor_id");
+     localStorage.removeItem("MYsponsor_id");
+
+
+
   }, [refId, navigate]);
 
   const handleInput = (e) => {

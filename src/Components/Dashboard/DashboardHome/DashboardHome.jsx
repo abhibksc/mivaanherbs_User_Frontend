@@ -51,7 +51,7 @@ const DashboardHome = () => {
   ];
 
   return (
-    <div className="flex w-full">
+    <div className="flex w-screen">
       <main className="flex-1 p-6 bg-gray-100">
         <h1 className="text-2xl font-semibold mb-6">Dashboard Overview</h1>
 
