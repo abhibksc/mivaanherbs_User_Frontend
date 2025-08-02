@@ -10,6 +10,10 @@ import MatchingIncomePage from "./MatchingIncomePage/MatchingIncomePage";
 import AllIncomeLogsPage from "./AllIncomeLogsPage/AllIncomeLogsPage";
 import Profile from "./Profile/Profile";
 import ReferAndEarnPage from "./ReferEarnPage/ReferEarnPage";
+import IncomePage from "./IncomePage/IncomePage";
+import TeamSection from "./TeamSection/TeamSection";
+import MyTeam from "./TeamSection/MyTeam";
+import MyGeology from "./TeamSection/MyGeology";
 
 const DashboardRouting = () => {
   return (
@@ -22,6 +26,18 @@ const DashboardRouting = () => {
       <Route path="/" element={<DashboardBase />}>
         <Route index element={<DashboardHome />} />
         <Route path="wallet" element={<WalletPage />} />
+
+        <Route path="my-team" element={<MyTeam />} />
+        <Route path="mygeo" element={<MyGeology />} />
+
+
+
+        <Route path="incomeLogs" element={<IncomePage />} />
+        <Route path="myteam" element={<TeamSection />} />
+
+
+
+
         <Route path="directSponsor" element={<DirectSponsorIncomePage />} />
         <Route path="fighterIncome" element={<FighterIncomePage />} />
         <Route path="matchingIncome" element={<MatchingIncomePage />} />

@@ -11,16 +11,19 @@ import {
   Gift,
   User,
   LogOut,
-  Menu
+  Menu,
+  LineChartIcon
 } from 'lucide-react';
 
 const modules = [
   { name: 'Dashboard', path: '/dashboard', icon: <LayoutDashboard className="w-5 h-5" /> },
   { name: 'Wallet', path: '/dashboard/wallet', icon: <Wallet className="w-5 h-5" /> },
-  { name: 'Income Logs', path: '/dashboard/incomeLogs', icon: <LineChart className="w-5 h-5" /> },
-  { name: 'Direct Sponsor Income', path: '/dashboard/directSponsor', icon: <Users className="w-5 h-5" /> },
-  { name: 'Fighter Income', path: '/dashboard/fighterIncome', icon: <ShieldCheck className="w-5 h-5" /> },
-  { name: 'Matching Income', path: '/dashboard/matchingIncome', icon: <Scale className="w-5 h-5" /> },
+  { name: 'Income', path: '/dashboard/incomeLogs', icon: <LineChart className="w-5 h-5" /> },
+  { name: 'Team', path: '/dashboard/myteam', icon: <LineChartIcon className="w-5 h-5" /> },
+
+  // { name: 'Direct Sponsor Income', path: '/dashboard/directSponsor', icon: <Users className="w-5 h-5" /> },
+  // { name: 'Fighter Income', path: '/dashboard/fighterIncome', icon: <ShieldCheck className="w-5 h-5" /> },
+  // { name: 'Matching Income', path: '/dashboard/matchingIncome', icon: <Scale className="w-5 h-5" /> },
   { name: 'Store', path: '/store', icon: <Store className="w-5 h-5" /> },
   { name: 'Refer & Earn', path: '/dashboard/reffer&earn', icon: <Gift className="w-5 h-5" /> },
   { name: 'Profile', path: '/dashboard/profile', icon: <User className="w-5 h-5" /> },
