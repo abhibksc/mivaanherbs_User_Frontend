@@ -11,7 +11,7 @@ const products = [
   {
     id: 2,
     name: "Premium Wellness Box",
-    price: "₹10,999",
+    price: "₹9,999",
     description:
       "Loaded with premium Ayurvedic products, essential oils, and health drinks. Designed for those serious about transforming their health.",
   },
