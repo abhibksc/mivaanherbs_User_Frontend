@@ -14,6 +14,9 @@ import IncomePage from "./IncomePage/IncomePage";
 import TeamSection from "./TeamSection/TeamSection";
 import MyTeam from "./TeamSection/MyTeam";
 import MyGeology from "./TeamSection/MyGeology";
+import KYC from "./Profile/KYC";
+import DownlineTree from "./Activation/DownlineTree";
+import ActivateProductPage from "./Activation/ActivateProductPage";
 
 const DashboardRouting = () => {
   return (
@@ -25,7 +28,12 @@ const DashboardRouting = () => {
     <Routes>
       <Route path="/" element={<DashboardBase />}>
         <Route index element={<DashboardHome />} />
-        <Route path="wallet" element={<WalletPage />} />
+        <Route path="Orderfund" element={<WalletPage />} />
+        <Route path="userList" element={<DownlineTree />} />
+        <Route path="Orderfund" element={<WalletPage />} />
+
+        <Route path="/activate-product/:userId" element={<ActivateProductPage />} />
+
 
         <Route path="my-team" element={<MyTeam />} />
         <Route path="mygeo" element={<MyGeology />} />
@@ -34,6 +42,9 @@ const DashboardRouting = () => {
 
         <Route path="incomeLogs" element={<IncomePage />} />
         <Route path="myteam" element={<TeamSection />} />
+        <Route path="kyc" element={<KYC />} />
+
+        {/* kyc */}
 
 
 

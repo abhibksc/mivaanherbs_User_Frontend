@@ -16,7 +16,6 @@ const countries = [
   { id: "BR", name: "Brazil" },
   { id: "ZA", name: "South Africa" },
   { id: "JP", name: "Japan" },
-  // Add more as needed
 ];
 
 const AuthForm = () => {
@@ -26,14 +25,16 @@ const AuthForm = () => {
   const [showCongratsModal, setShowCongratsModal] = useState(false);
   const [registeredData, setRegisteredData] = useState({});
   const [activeTab, setActiveTab] = useState("login");
+  const [forgotPasswordMode, setForgotPasswordMode] = useState(false);
   const [formData, setFormData] = useState({
     full_name: "",
     mobile: "",
     email: "",
     password: "",
+    newPassword: "",
     other_sponsor_id: "",
     country_id: "",
-    join_at: "", // <-- New field
+    join_at: "",
     username_or_mobile: "",
   });
   const [loading, setLoading] = useState(false);
@@ -51,13 +52,11 @@ const AuthForm = () => {
       other_sponsor_id: refId || localStorage.getItem("other_sponsor_id"),
     }));
 
-     localStorage.removeItem("token");
-     localStorage.removeItem("username");
-     localStorage.removeItem("other_sponsor_id");
-     localStorage.removeItem("MYsponsor_id");
-toast.warn("Please SingUp or Login!")
-
-
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("other_sponsor_id");
+    localStorage.removeItem("MYsponsor_id");
+    toast.warn("Please SignUp or Login!");
   }, [refId, navigate]);
 
   const handleInput = (e) => {
@@ -73,7 +72,16 @@ toast.warn("Please SingUp or Login!")
     setMessage(null);
 
     try {
-      if (activeTab === "register") {
+      if (forgotPasswordMode) {
+        const { username_or_mobile, newPassword } = formData;
+        const res = await axios.post(`${API_URL}/forgot-password`, {
+          username_or_mobile,
+          newPassword,
+        });
+        toast.success(res.data.message);
+        setForgotPasswordMode(false);
+        setFormData((prev) => ({ ...prev, password: "", newPassword: "" }));
+      } else if (activeTab === "register") {
         const {
           full_name,
           mobile,
@@ -95,7 +103,7 @@ toast.warn("Please SingUp or Login!")
 
         setMessage(res.data.message || "Registered successfully");
         localStorage.setItem("username", res.data.username);
-      localStorage.removeItem("other_sponsor_id");
+        localStorage.removeItem("other_sponsor_id");
 
         setRegisteredData({ ...res.data, password });
         setShowCongratsModal(true);
@@ -109,7 +117,7 @@ toast.warn("Please SingUp or Login!")
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("username", res.data.userName);
         localStorage.setItem("MYsponsor_id", res.data.MYsponsor_id);
-      localStorage.removeItem("other_sponsor_id");
+        localStorage.removeItem("other_sponsor_id");
 
         setMessage("Login successful");
         window.location.href = "/dashboard";
@@ -125,9 +133,12 @@ toast.warn("Please SingUp or Login!")
     <div className="max-w-xl min-h-screen mx-auto mt-10 p-6 bg-white relative">
       <div className="flex justify-center mb-4">
         <button
-          onClick={() => setActiveTab("login")}
+          onClick={() => {
+            setActiveTab("login");
+            setForgotPasswordMode(false);
+          }}
           className={`px-4 py-2 font-semibold ${
-            activeTab === "login"
+            activeTab === "login" && !forgotPasswordMode
               ? "text-white bg-blue-600"
               : "bg-gray-100 text-gray-700"
           } rounded-l`}
@@ -135,7 +146,10 @@ toast.warn("Please SingUp or Login!")
           Login
         </button>
         <button
-          onClick={() => setActiveTab("register")}
+          onClick={() => {
+            setActiveTab("register");
+            setForgotPasswordMode(false);
+          }}
           className={`px-4 py-2 font-semibold ${
             activeTab === "register"
               ? "text-white bg-green-600"
@@ -147,98 +161,44 @@ toast.warn("Please SingUp or Login!")
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {activeTab === "register" && (
+        {activeTab === "register" && !forgotPasswordMode && (
           <>
-            <input
-              name="full_name"
-              placeholder="Full Name"
-              onChange={handleInput}
-              required
-              className="w-full p-2 border rounded"
-            />
-
-            <input
-              name="mobile"
-              placeholder="Mobile"
-              onChange={handleInput}
-              required
-              className="w-full p-2 border rounded"
-            />
-
-            <input
-              name="email"
-              placeholder="Email"
-              onChange={handleInput}
-              required
-              className="w-full p-2 border rounded"
-            />
-
-            {/* Country dropdown */}
-            <select
-              name="country_id"
-              onChange={handleInput}
-              value={formData.country_id}
-              required
-              className="w-full p-2 border rounded"
-            >
+            <input name="full_name" placeholder="Full Name" onChange={handleInput} required className="w-full p-2 border rounded" />
+            <input name="mobile" placeholder="Mobile" onChange={handleInput} required className="w-full p-2 border rounded" />
+            <input name="email" placeholder="Email" onChange={handleInput} required className="w-full p-2 border rounded" />
+            <select name="country_id" onChange={handleInput} value={formData.country_id} required className="w-full p-2 border rounded">
               <option value="">Select Country</option>
               {countries.map((country) => (
-                <option key={country.id} value={country.id}>
-                  {country.name}
-                </option>
+                <option key={country.id} value={country.id}>{country.name}</option>
               ))}
             </select>
-
-            <select
-              name="join_at"
-              onChange={handleInput}
-              value={formData.join_at}
-              required
-              className="w-full p-2 border rounded"
-            >
+            <select name="join_at" onChange={handleInput} value={formData.join_at} required className="w-full p-2 border rounded">
               <option value="">Select Position</option>
               <option value="Left">Left</option>
               <option value="Right">Right</option>
             </select>
-
-            <input
-              name="other_sponsor_id"
-              placeholder="Referral ID"
-              required
-              value={formData.other_sponsor_id}
-              onChange={handleInput}
-              className="w-full p-2 border rounded"
-            />
-
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={handleInput}
-              required
-              className="w-full p-2 border rounded"
-            />
+            <input name="other_sponsor_id" placeholder="Referral ID" required value={formData.other_sponsor_id} onChange={handleInput} className="w-full p-2 border rounded" />
+            <input type="password" name="password" placeholder="Password" onChange={handleInput} required className="w-full p-2 border rounded" />
           </>
         )}
 
-        {activeTab === "login" && (
+        {activeTab === "login" && !forgotPasswordMode && (
           <>
-            <input
-              name="username_or_mobile"
-              placeholder="Username or Mobile"
-              onChange={handleInput}
-              required
-              className="w-full p-2 border rounded"
-            />
+            <input name="username_or_mobile" placeholder="Username or Mobile" onChange={handleInput} required className="w-full p-2 border rounded" />
+            <input type="password" name="password" placeholder="Password" onChange={handleInput} required className="w-full p-2 border rounded" />
+            <p className="text-sm text-blue-600 cursor-pointer underline" onClick={() => setForgotPasswordMode(true)}>
+              Forgot Password?
+            </p>
+          </>
+        )}
 
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={handleInput}
-              required
-              className="w-full p-2 border rounded"
-            />
+        {forgotPasswordMode && (
+          <>
+            <input name="username_or_mobile" placeholder="Username or Mobile" onChange={handleInput} required className="w-full p-2 border rounded" />
+            <input type="password" name="newPassword" placeholder="New Password" onChange={handleInput} required className="w-full p-2 border rounded" />
+            <p className="text-sm text-blue-600 cursor-pointer underline" onClick={() => setForgotPasswordMode(false)}>
+              Back to Login
+            </p>
           </>
         )}
 
@@ -246,11 +206,13 @@ toast.warn("Please SingUp or Login!")
           type="submit"
           disabled={loading}
           className={`w-full py-2 text-white font-bold rounded ${
-            activeTab === "login" ? "bg-blue-600" : "bg-green-600"
+            activeTab === "login" && !forgotPasswordMode ? "bg-blue-600" : forgotPasswordMode ? "bg-yellow-600" : "bg-green-600"
           } hover:opacity-90`}
         >
           {loading
             ? "Please wait..."
+            : forgotPasswordMode
+            ? "Reset Password"
             : activeTab === "login"
             ? "Login"
             : "Register"}
@@ -267,19 +229,11 @@ toast.warn("Please SingUp or Login!")
             <h2 className="text-2xl font-bold text-green-600 text-center mb-2">
               🎉 Congratulations!
             </h2>
-            <p className="text-center text-gray-700">
-              {registeredData.message}
-            </p>
-
+            <p className="text-center text-gray-700">{registeredData.message}</p>
             <div className="mt-4 text-sm text-gray-600 space-y-1">
-              <p>
-                <strong>Username:</strong> {registeredData.username}
-              </p>
-              <p>
-                <strong>Password:</strong> {registeredData.password}
-              </p>
+              <p><strong>Username:</strong> {registeredData.username}</p>
+              <p><strong>Password:</strong> {registeredData.password}</p>
             </div>
-
             <button
               onClick={() => {
                 setShowCongratsModal(false);

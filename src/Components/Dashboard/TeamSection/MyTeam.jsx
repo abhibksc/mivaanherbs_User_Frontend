@@ -6,7 +6,13 @@ const MyTeam = () => {
 
   useEffect(() => {
     api.get("/user/myteam")
-      .then((res) => setTeam(res.data.data))
+      .then((res) => {
+        
+      console.log(res);
+        
+        setTeam(res.data.data)
+      
+      })
       .catch((err) => console.error("Failed to fetch team:", err))
       .finally(() => setLoading(false));
   }, []);

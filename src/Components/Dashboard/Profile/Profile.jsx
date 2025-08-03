@@ -1,30 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import {
   User,
-  Smartphone,
-  Mail,
   Globe,
-  Users,
-  Wallet,
-  CheckCircle,
-  XCircle,
-  Calendar,
-  Activity,
-  GitBranch
+  Banknote,
+  FileText,
+  Users
 } from 'lucide-react';
 
-const InfoItem = ({ icon: Icon, label, value, color = "text-gray-800" }) => (
-  <div className="flex items-center gap-3 bg-gray-50 hover:bg-gray-100 rounded-lg px-4 py-3 shadow-sm transition">
-    <Icon className="w-5 h-5 text-indigo-500" />
-    <div className="flex flex-col">
-      <span className="text-sm text-gray-500">{label}</span>
-      <span className={`font-semibold ${color}`}>{value}</span>
-    </div>
+const EditableField = ({ label, value, onChange, name, type = "text" }) => (
+  <div className="flex flex-col gap-1">
+    <label className="text-sm font-medium text-gray-600">{label}</label>
+    <input
+      type={type}
+      name={name}
+      value={value || ''}
+      onChange={onChange}
+      className="px-4 py-2 mt-1 border rounded-xl border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white shadow-inner transition-all"
+    />
   </div>
 );
 
 const UserProfile = () => {
-  const [user, setUser] = useState(null);
+  const [data, setData] = useState(null);
+  const [editingSection, setEditingSection] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -32,19 +30,15 @@ const UserProfile = () => {
     const fetchProfile = async () => {
       try {
         const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/user/getProfile`, {
-          method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         });
-
-        if (!res.ok) throw new Error('Failed to fetch profile');
-
-        const data = await res.json();
-        setUser(data);
+        const result = await res.json();
+        setData(result);
       } catch (err) {
-        setError(err.message || 'Something went wrong');
+        setError('Failed to fetch profile');
       } finally {
         setLoading(false);
       }
@@ -53,72 +47,111 @@ const UserProfile = () => {
     fetchProfile();
   }, []);
 
-  if (loading) return <div className="p-4 text-center animate-pulse">Loading...</div>;
-  if (error) return <div className="p-4 text-center text-red-500">{error}</div>;
+  const handleChange = (section, field) => (e) => {
+    setEditingSection(prev => ({
+      ...prev,
+      [section]: {
+        ...prev[section],
+        [field]: e.target.value,
+      },
+    }));
+  };
+
+  const handleSave = async (section) => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/user/updateSection`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify({ section, data: editingSection[section] }),
+      });
+      if (!res.ok) throw new Error('Update failed');
+      const updated = await res.json();
+      setData(prev => ({ ...prev, [section]: updated[section] }));
+      setEditingSection(prev => ({ ...prev, [section]: undefined }));
+      alert(`${section} updated successfully!`);
+    } catch (err) {
+      alert('Update failed');
+    }
+  };
+
+  if (loading) return <div className="text-center py-6 text-lg font-medium text-gray-600 animate-pulse">Loading profile...</div>;
+  if (error) return <div className="text-center text-red-600">{error}</div>;
+
+  const { user, address, bank, kyc, nominee } = data;
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-white rounded-2xl shadow-xl space-y-10">
-      <div>
-        <h2 className="text-3xl font-bold text-indigo-700">👤 User Profile</h2>
-        <p className="text-sm text-gray-500">Here’s a summary of your account information</p>
-      </div>
+    <div className="max-w-5xl mx-auto px-6 py-12 space-y-10 bg-gradient-to-b from-white via-slate-50 to-slate-100 rounded-2xl shadow-xl">
+      <h2 className="text-4xl font-bold text-indigo-700 mb-2 text-center">👤 User Profile</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {/* Basic Info */}
-        <InfoItem icon={User} label="Full Name" value={user.full_name} />
-        <InfoItem icon={User} label="Username" value={user.username} />
-        <InfoItem icon={Mail} label="Email" value={user.email} />
-        <InfoItem icon={Smartphone} label="Mobile" value={user.mobile} />
-        <InfoItem icon={Globe} label="Country ID" value={user.country_id} />
+      {/* USER INFO */}
+      <Section title="Basic Info" icon={<User className="text-indigo-500" />}>
+        <EditableField label="Full Name" value={editingSection.user?.full_name ?? user.full_name} onChange={handleChange('user', 'full_name')} />
+        <EditableField label="Email" value={editingSection.user?.email ?? user.email} onChange={handleChange('user', 'email')} />
+        <EditableField label="Mobile" value={editingSection.user?.mobile ?? user.mobile} onChange={handleChange('user', 'mobile')} />
+        <SaveButton onClick={() => handleSave('user')} />
+      </Section>
 
-        {/* Sponsor Info */}
-        <InfoItem icon={Users} label="My Sponsor ID" value={user.MYsponsor_id} />
-        <InfoItem icon={Users} label="Other Sponsor ID" value={user.other_sponsor_id} />
-        <InfoItem icon={Users} label="Referred By" value={user.referred_by} />
+      {/* ADDRESS */}
+      <Section title="Address" icon={<Globe className="text-indigo-500" />}>
+        <EditableField label="Address Line" value={editingSection.address?.address_line ?? address?.[0]?.address_line ?? ''} onChange={handleChange('address', 'address_line')} />
+        <EditableField label="City" value={editingSection.address?.city ?? address?.[0]?.city ?? ''} onChange={handleChange('address', 'city')} />
+        <EditableField label="State" value={editingSection.address?.state ?? address?.[0]?.state ?? ''} onChange={handleChange('address', 'state')} />
+        <EditableField label="Zip Code" value={editingSection.address?.pin_code ?? address?.[0]?.pin_code ?? ''} onChange={handleChange('address', 'pin_code')} />
+        <EditableField label="Country" value={editingSection.address?.country ?? address?.[0]?.country ?? ''} onChange={handleChange('address', 'country')} />
+        <SaveButton onClick={() => handleSave('address')} />
+      </Section>
 
-        {/* MLM Info */}
-        <InfoItem icon={GitBranch} label="Left User" value={user.left_user || "N/A"} />
-        <InfoItem icon={GitBranch} label="Right User" value={user.right_user || "N/A"} />
-        <InfoItem icon={Activity} label="Left BV" value={user.left_bv} />
-        <InfoItem icon={Activity} label="Right BV" value={user.right_bv} />
+      {/* BANK */}
+      <Section title="Bank Details" icon={<Banknote className="text-indigo-500" />}>
+        <EditableField label="Account Holder Name" value={editingSection.bank?.account_holder_name ?? bank?.account_holder_name ?? ''} onChange={handleChange('bank', 'account_holder_name')} />
+        <EditableField label="Account Number" value={editingSection.bank?.account_number ?? bank?.account_number ?? ''} onChange={handleChange('bank', 'account_number')} />
+        <EditableField label="IFSC Code" value={editingSection.bank?.ifsc_code ?? bank?.ifsc_code ?? ''} onChange={handleChange('bank', 'ifsc_code')} />
+        <EditableField label="Bank Name" value={editingSection.bank?.bank_name ?? bank?.bank_name ?? ''} onChange={handleChange('bank', 'bank_name')} />
+        <SaveButton onClick={() => handleSave('bank')} />
+      </Section>
 
-        {/* Wallet & Incomes */}
-        <InfoItem icon={Wallet} label="Wallet Balance" value={`₹${user.wallet_balance}`} />
-        <InfoItem icon={Wallet} label="Direct Sponsor Income" value={`₹${user.direct_sponsor_income}`} />
-        <InfoItem icon={Wallet} label="Fighter Income" value={`₹${user.fighter_income}`} />
-        <InfoItem icon={Wallet} label="Matching Income" value={`₹${user.matching_income}`} />
+      {/* KYC */}
+      <Section title="KYC Details" icon={<FileText className="text-indigo-500" />}>
+        <EditableField label="Aadhaar Number" value={editingSection.kyc?.aadhaar_number ?? kyc?.aadhaar_number ?? ''} onChange={handleChange('kyc', 'aadhaar_number')} />
+        <EditableField label="PAN Number" value={editingSection.kyc?.pan_number ?? kyc?.pan_number ?? ''} onChange={handleChange('kyc', 'pan_number')} />
+        <SaveButton onClick={() => handleSave('kyc')} />
+      </Section>
 
-        {/* Meta */}
-        <InfoItem
-          icon={user.is_active ? CheckCircle : XCircle}
-          label="Account Status"
-          value={user.is_active ? '✅ Active' : '❌ Inactive'}
-          color={user.is_active ? "text-green-600" : "text-red-500"}
-        />
-        <InfoItem icon={User} label="Created By" value={user.crt_by} />
-        <InfoItem icon={Calendar} label="Created At" value={new Date(user.crt_date).toLocaleString()} />
-      </div>
-
-      {/* Upline Path Section */}
-      <div className="mt-8">
-        <h3 className="text-xl font-semibold text-indigo-600 mb-2">📶 Upline Path</h3>
-        {user.upline_path && user.upline_path.length > 0 ? (
-          <div className="flex flex-wrap gap-2">
-            {user.upline_path.map((uplineId, idx) => (
-              <span
-                key={idx}
-                className="px-3 py-1 text-sm bg-indigo-100 text-indigo-700 rounded-full"
-              >
-                {uplineId}
-              </span>
-            ))}
-          </div>
-        ) : (
-          <p className="text-gray-500 italic">No upline path available.</p>
-        )}
-      </div>
+      {/* NOMINEE */}
+      <Section title="Nominee Details" icon={<Users className="text-indigo-500" />}>
+        <EditableField label="Nominee Name" value={editingSection.nominee?.nominee_name ?? nominee?.nominee_name ?? ''} onChange={handleChange('nominee', 'nominee_name')} />
+        <EditableField label="Relationship" value={editingSection.nominee?.relationship ?? nominee?.relationship ?? ''} onChange={handleChange('nominee', 'relationship')} />
+        <EditableField label="Mobile" value={editingSection.nominee?.mobile ?? nominee?.mobile ?? ''} onChange={handleChange('nominee', 'mobile')} />
+        <SaveButton onClick={() => handleSave('nominee')} />
+      </Section>
     </div>
   );
 };
+
+const Section = ({ title, icon, children }) => (
+  <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300">
+    <div className="flex items-center gap-3 mb-5 border-b pb-3 border-indigo-100">
+      <div className="bg-indigo-100 p-2 rounded-full">{icon}</div>
+      <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
+    </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {children}
+    </div>
+  </div>
+);
+
+const SaveButton = ({ onClick }) => (
+  <div className="md:col-span-2 text-right">
+    <button
+      onClick={onClick}
+      className="mt-4 px-6 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all shadow-sm"
+    >
+      Save Changes
+    </button>
+  </div>
+);
 
 export default UserProfile;
