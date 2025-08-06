@@ -54,6 +54,7 @@ const modules = [
     icon: <Wallet className="w-5 h-5" />,
     children: [
       { name: "Order Fund", path: "/dashboard/Orderfund" },
+      { name: "Fund Request", path: "/dashboard/fundRequest" },
       { name: "Activation", path: "/dashboard/userList" },
       { name: "Repurchase", path: "/dashboard/repurchase" },
 

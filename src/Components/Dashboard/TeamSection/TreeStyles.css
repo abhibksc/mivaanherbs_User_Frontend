@@ -1,0 +1,67 @@
+.tree {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+  position: relative;
+}
+
+.tree ul {
+  padding-top: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.tree li {
+  list-style-type: none;
+  text-align: center;
+  position: relative;
+  padding: 20px 10px 0 10px;
+}
+
+/* Lines */
+.tree li::before,
+.tree li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 20px;
+  border-top: 2px solid #ccc;
+}
+
+.tree li::before {
+  right: 50%;
+  border-right: 2px solid #ccc;
+}
+
+.tree li::after {
+  left: 50%;
+  border-left: 2px solid #ccc;
+}
+
+/* Remove lines if only one child */
+.tree li:only-child::before,
+.tree li:only-child::after {
+  display: none;
+}
+
+.tree li:first-child::before,
+.tree li:last-child::after {
+  border: none;
+}
+
+/* Node box */
+.tree-node {
+  display: inline-block;
+  background: #e0f2fe;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  min-width: 120px;
+  transition: all 0.3s ease-in-out;
+}
+
+.tree-node:hover {
+  background-color: #bae6fd;
+}

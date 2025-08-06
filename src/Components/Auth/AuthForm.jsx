@@ -26,17 +26,21 @@ const AuthForm = () => {
   const [registeredData, setRegisteredData] = useState({});
   const [activeTab, setActiveTab] = useState("login");
   const [forgotPasswordMode, setForgotPasswordMode] = useState(false);
-  const [formData, setFormData] = useState({
-    full_name: "",
-    mobile: "",
-    email: "",
-    password: "",
-    newPassword: "",
-    other_sponsor_id: "",
-    country_id: "",
-    join_at: "",
-    username_or_mobile: "",
-  });
+// ✅ ADD fighter_user_id TO BACKEND FROM FRONTEND
+
+const [formData, setFormData] = useState({
+  full_name: "",
+  mobile: "",
+  email: "",
+  password: "",
+  newPassword: "",
+  other_sponsor_id: "",
+  country_id: "",
+  join_at: "",
+  username_or_mobile: "",
+  fighter_user_id: "", // ✅ Added this
+});
+
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
 
@@ -85,24 +89,26 @@ const AuthForm = () => {
         setForgotPasswordMode(false);
         setFormData((prev) => ({ ...prev, password: "", newPassword: "" }));
       } else if (activeTab === "register") {
-        const {
-          full_name,
-          mobile,
-          email,
-          password,
-          other_sponsor_id,
-          country_id,
-          join_at,
-        } = formData;
-        const res = await axios.post(`${API_URL}/user-register`, {
-          full_name,
-          mobile,
-          email,
-          password,
-          other_sponsor_id,
-          country_id,
-          join_at,
-        });
+const {
+  full_name,
+  mobile,
+  email,
+  password,
+  other_sponsor_id,
+  country_id,
+  join_at,
+  fighter_user_id, // ✅ Include this
+} = formData;
+      const res = await axios.post(`${API_URL}/user-register`, {
+  full_name,
+  mobile,
+  email,
+  password,
+  other_sponsor_id,
+  country_id,
+  join_at,
+  fighter_user_id, // ✅ Send to backend
+});
 
         setMessage(res.data.message || "Registered successfully");
         localStorage.setItem("username", res.data.username);
@@ -182,7 +188,19 @@ const AuthForm = () => {
               <option value="Left">Left</option>
               <option value="Right">Right</option>
             </select>
+
+            <input
+  name="fighter_user_id"
+  placeholder="Fighter User ID"
+  value={formData.fighter_user_id}
+  onChange={handleInput}
+  className="w-full p-2 border rounded"
+/>
+
+
+
             <input name="other_sponsor_id" placeholder="Referral ID" required value={formData.other_sponsor_id} onChange={handleInput} className="w-full p-2 border rounded" />
+
             <input type="password" name="password" placeholder="Password" onChange={handleInput} required className="w-full p-2 border rounded" />
           </>
         )}
