@@ -53,6 +53,9 @@ const AuthForm = () => {
     }));
 
     localStorage.removeItem("token");
+
+    localStorage.removeItem("full_name");
+
     localStorage.removeItem("username");
     localStorage.removeItem("other_sponsor_id");
     localStorage.removeItem("MYsponsor_id");
@@ -248,7 +251,7 @@ const AuthForm = () => {
 
       {/* Message Text */}
       <p className="text-gray-700">
-        Hi <strong>{registeredData.name}</strong>, You are successfully registered with us.
+        Hi <strong>{formData.full_name}</strong>, You are successfully registered with us.
         <br />
         Your ID No. is <strong>{localStorage.getItem("username")}</strong> and Password is <strong>{formData.password}</strong>.
         <br />
