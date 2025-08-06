@@ -17,6 +17,7 @@ import MyGeology from "./TeamSection/MyGeology";
 import KYC from "./Profile/KYC";
 import DownlineTree from "./Activation/DownlineTree";
 import ActivateProductPage from "./Activation/ActivateProductPage";
+import FundRequestForm from "./FundRequest/FundRequestForm";
 
 const DashboardRouting = () => {
   return (
@@ -55,6 +56,11 @@ const DashboardRouting = () => {
         <Route path="incomeLogs" element={<AllIncomeLogsPage />} />
         <Route path="profile" element={<Profile />} />
         <Route path="reffer&earn" element={<ReferAndEarnPage />} />
+
+
+
+        <Route path="fundrequest" element={<FundRequestForm />} />
+
 
 
       </Route>
