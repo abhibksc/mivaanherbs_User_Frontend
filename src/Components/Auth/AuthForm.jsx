@@ -116,6 +116,8 @@ const AuthForm = () => {
 
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("username", res.data.userName);
+        localStorage.setItem("full_name", res.data.full_name);
+
         localStorage.setItem("MYsponsor_id", res.data.userName);
         localStorage.removeItem("other_sponsor_id");
 

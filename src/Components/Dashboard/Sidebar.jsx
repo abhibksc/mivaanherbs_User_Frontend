@@ -91,7 +91,9 @@ const Sidebar = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [expanded, setExpanded] = useState(null);
-  const username = localStorage.getItem("username");
+  const userId = localStorage.getItem("username");
+  const full_name = localStorage.getItem("full_name");
+
 
   const toggleSidebar = () => setIsOpen(!isOpen);
   const closeSidebar = () => setIsOpen(false);
@@ -132,8 +134,8 @@ const Sidebar = () => {
             className="w-16 h-16 rounded-full border-2 object-contain border-white"
           />
           <div className="flex flex-col">
-            <h3 className="text-lg font-semibold">{username}</h3>
-            <p className="text-sm text-gray-300">User ID: {username}</p>
+            <h3 className="text-lg font-semibold">{full_name}</h3>
+            <p className="text-sm text-gray-300">{userId}</p>
           </div>
         </div>
 
