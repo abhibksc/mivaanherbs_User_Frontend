@@ -116,7 +116,7 @@ const AuthForm = () => {
 
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("username", res.data.userName);
-        localStorage.setItem("MYsponsor_id", res.data.MYsponsor_id);
+        localStorage.setItem("MYsponsor_id", res.data.userName);
         localStorage.removeItem("other_sponsor_id");
 
         setMessage("Login successful");
@@ -223,29 +223,50 @@ const AuthForm = () => {
         <p className="mt-4 text-center text-sm text-red-500">{message}</p>
       )}
 
-      {showCongratsModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full animate-bounceIn">
-            <h2 className="text-2xl font-bold text-green-600 text-center mb-2">
-              🎉 Congratulations!
-            </h2>
-            <p className="text-center text-gray-700">{registeredData.message}</p>
-            <div className="mt-4 text-sm text-gray-600 space-y-1">
-              <p><strong>Username:</strong> {registeredData.username}</p>
-              <p><strong>Password:</strong> {registeredData.password}</p>
-            </div>
-            <button
-              onClick={() => {
-                setShowCongratsModal(false);
-                setActiveTab("login");
-              }}
-              className="mt-6 w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
-            >
-              Proceed to Login
-            </button>
-          </div>
+{showCongratsModal && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md text-center">
+      {/* Green checkmark icon inside circle */}
+      <div className="flex justify-center mb-4">
+        <div className="w-16 h-16 rounded-full border-2 border-green-500 flex items-center justify-center">
+          <svg
+            className="w-8 h-8 text-green-500"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
         </div>
-      )}
+      </div>
+
+      {/* Done Text */}
+      <h2 className="text-2xl font-semibold text-gray-800 mb-2">Done!</h2>
+
+      {/* Message Text */}
+      <p className="text-gray-700">
+        Hi <strong>{registeredData.name}</strong>, You are successfully registered with us.
+        <br />
+        Your ID No. is <strong>{localStorage.getItem("username")}</strong> and Password is <strong>{formData.password}</strong>.
+        <br />
+        Please login to access your profile.
+      </p>
+
+      {/* OK Button */}
+      <button
+        onClick={() => {
+          setShowCongratsModal(false);
+          setActiveTab("login");
+        }}
+        className="mt-6 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+      >
+        OK
+      </button>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
