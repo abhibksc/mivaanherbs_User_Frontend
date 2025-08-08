@@ -21,11 +21,11 @@ import FundRequestForm from "./FundRequest/FundRequestForm";
 
 const DashboardRouting = () => {
   return (
-  <div className="flex flex-col md:flex-row w-full min-h-screen">
+  <div className="flex flex-col md:flex-row w-full min-h-screen bg-gradient-to-br from-green-900 via-green-950 to-green-800">
     
   <Sidebar />
   
-  <div className="flex-1 mt-16 md:mt-0 p-4">
+  <div className="flex-1 mt-16 md:mt-0 ">
     <Routes>
       <Route path="/" element={<DashboardBase />}>
         <Route index element={<DashboardHome />} />

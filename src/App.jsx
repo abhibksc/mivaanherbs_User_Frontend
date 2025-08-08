@@ -36,12 +36,7 @@ const AppContent = () => {
                 <div className="">
                   <Header />
                   <BannerCarousel />
-                  <JoinUs/>
-
-                  <About />
-                  <Products />
-                  <Article />
-                  <VideoSection />
+                  <AuthForm />
                   <Store />
                   <Testimonials />
                   <Contact />

@@ -18,7 +18,7 @@ const MyTeam = () => {
   }, []);
 
   return (
-    <div className="p-6">
+    <div className="p-6 bg-gray-100 rounded-2xl">
       <h2 className="text-2xl font-bold mb-4 text-gray-800">My Team</h2>
       {loading ? (
         <p>Loading team data...</p>

@@ -141,7 +141,7 @@ const {
   };
 
   return (
-    <div className="max-w-xl min-h-screen mx-auto mt-10 p-6 bg-white relative">
+    <div className="max-w-xl md:min-h-screen mx-auto mt-10 p-6 bg-white rounded-xl relative">
       <div className="flex justify-center mb-4">
         <button
           onClick={() => {

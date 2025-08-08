@@ -20,7 +20,7 @@ navigate("/authentication")
 
 
   return (
-  <div className="w-full p-4  md:pt-4">
+  <div className="w-full ">
       <Outlet /> {/* This renders WalletPage when path is /dashboard/wallet */}
   </div>
   );

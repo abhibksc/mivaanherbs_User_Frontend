@@ -9,6 +9,7 @@ const DownlineTree = () => {
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchDownline = async () => {
       const token = localStorage.getItem('token');
@@ -41,38 +42,48 @@ const DownlineTree = () => {
   });
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">Downline Users</h2>
-      
+    <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-purple-900 to-indigo-800 p-4 sm:p-6 text-white">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">🌐 Downline Users</h2>
+
       <input
         type="text"
-        placeholder="Search by username, name, mobile, or email"
+        placeholder="🔍 Search by username, name, mobile, or email"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="mb-4 px-3 py-2 border rounded w-full"
+        className="mb-6 w-full px-4 py-3 text-sm sm:text-base text-black rounded-xl shadow-inner focus:outline-none focus:ring-2 focus:ring-purple-500"
       />
 
       {loading ? (
-        <p>Loading...</p>
+        <p className="text-center text-lg animate-pulse">Loading downline users...</p>
       ) : filteredUsers.length === 0 ? (
-        <p>No downline users found.</p>
+        <p className="text-center text-lg">🚫 No downline users found.</p>
       ) : (
-        <ul className="space-y-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filteredUsers.map((user) => (
-            <li key={user._id}
-                onClick={() => navigate(`/dashboard/activate-product/${user.username}`)}
-            className="border p-3 rounded shadow-sm">
-              <p><strong>ID:</strong> {user._id}</p>
-              <p><strong>Username:</strong> {user.username}</p>
-              <p><strong>Name:</strong> {user.full_name}</p>
-              <p><strong>Mobile:</strong> {user.mobile}</p>
-              <p><strong>Email:</strong> {user.email}</p>
-              <p><strong>Wallet Balance:</strong> ₹{user.wallet_balance}</p>
-              <p><strong>Active:</strong> {user.is_active ? 'Yes' : 'No'}</p>
-              <p><strong>Created:</strong> {new Date(user.crt_date).toLocaleString()}</p>
-            </li>
+            <div
+              key={user._id}
+              onClick={() => navigate(`/dashboard/activate-product/${user.username}`)}
+              className="bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md rounded-xl p-5 cursor-pointer transition transform hover:scale-[1.015] duration-300 shadow-md hover:shadow-xl"
+            >
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="text-lg font-bold text-purple-300">{user.username}</h3>
+                <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                  user.is_active
+                    ? 'bg-green-200 text-green-900'
+                    : 'bg-red-200 text-red-900'
+                }`}>
+                  {user.is_active ? 'Active' : 'Inactive'}
+                </span>
+              </div>
+
+              <p className="text-sm"><span className="font-semibold text-purple-200">Name:</span> {user.full_name}</p>
+              <p className="text-sm"><span className="font-semibold text-purple-200">Mobile:</span> {user.mobile}</p>
+              <p className="text-sm"><span className="font-semibold text-purple-200">Email:</span> {user.email}</p>
+              <p className="text-sm"><span className="font-semibold text-purple-200">Wallet:</span> ₹{user.wallet_balance}</p>
+              <p className="text-xs mt-2"><span className="font-semibold text-purple-200">Created:</span> {new Date(user.crt_date).toLocaleString()}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

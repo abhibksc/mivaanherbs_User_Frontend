@@ -14,7 +14,7 @@ const BannerCarousel = () => {
   ];
 
   return (
-    <div className="">
+    <div className="bg-gradient-to-br from-violet-900 via-violet-950 to-violet-500">
       <ImageCarousel images={bannerImages} autoplayInterval={3000} />
     </div>
   );
