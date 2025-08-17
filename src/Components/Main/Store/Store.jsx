@@ -6,7 +6,7 @@ const products = [
   {
     id: 1,
     image: NewProduct,
-    title: "Nature close Aloevera",
+    title: "MIVAAN HERB",
     description:
       "Aliqu diam amet diam et eos. Clita erat ipsum lorem erat ipsum lorem sit sed",
     price: "₹2,083.00",

@@ -9,12 +9,12 @@ const products = [
   {
     id: 1,
     image: product1,
-    title: "Nature close Aloevera",
+    title: "MIVAAN HERB",
     description:
       "Aliqu diam amet diam et eos. Clita erat ipsum lorem erat ipsum lorem sit sed",
     price: "₹2,083.00",
     DP: "₹1,670.00",
-    BP: "₹16.5",
+    BP: "₹16.7",
     amount: 2083,
   },
 ];
@@ -100,12 +100,6 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          <button
-            className="bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-700 transition self-start"
-            onClick={() => setShowModal(true)}
-          >
-            Buy Now
-          </button>
         </div>
       </div>
 
