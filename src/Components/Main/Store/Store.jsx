@@ -11,7 +11,7 @@ const products = [
       "Aliqu diam amet diam et eos. Clita erat ipsum lorem erat ipsum lorem sit sed",
     price: "₹2,083.00",
     DP: "₹1,670.00",
-    Bv: "₹16.5",
+    Bv: "₹16.7",
   },
 ];
 
