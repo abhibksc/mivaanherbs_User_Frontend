@@ -34,7 +34,7 @@ const Store = () => {
             <img
               src={product.image}
               alt={product.title}
-              className="w-full h-64 object-cover"
+              className="w-full h-64 object-contain p-6 rounded-full"
             />
             <div className="p-5">
               {/* Star Ratings */}

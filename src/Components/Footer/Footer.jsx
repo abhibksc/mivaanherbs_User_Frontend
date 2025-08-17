@@ -7,6 +7,7 @@ import {
   FaFacebookF,
   FaYoutube,
   FaLinkedinIn,
+  FaInstagram,
 } from "react-icons/fa";
 
 const Footer = () => {
@@ -29,17 +30,45 @@ const Footer = () => {
             Mivaanherbspvtltd@gmail.com
           </p>
           <div className="flex gap-3 mt-4">
-            <a href="#" className="w-9 h-9 bg-green-600 hover:bg-green-700 flex items-center justify-center rounded-full transition">
-              <FaTwitter />
-            </a>
-            <a href="#" className="w-9 h-9 bg-green-600 hover:bg-green-700 flex items-center justify-center rounded-full transition">
+            <a
+              href="https://www.facebook.com/profile.php?id=61577730700458"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 bg-green-600 hover:bg-green-700 flex items-center justify-center rounded-full transition"
+            >
               <FaFacebookF />
             </a>
-            <a href="#" className="w-9 h-9 bg-green-600 hover:bg-green-700 flex items-center justify-center rounded-full transition">
+            <a
+              href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=yu9yz1g"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 bg-green-600 hover:bg-green-700 flex items-center justify-center rounded-full transition"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://youtube.com/@mivaanherbspvtltd?si=nmi9Up8DAq5h5HW0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 bg-green-600 hover:bg-green-700 flex items-center justify-center rounded-full transition"
+            >
               <FaYoutube />
             </a>
-            <a href="#" className="w-9 h-9 bg-green-600 hover:bg-green-700 flex items-center justify-center rounded-full transition">
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 bg-green-600 hover:bg-green-700 flex items-center justify-center rounded-full transition"
+            >
               <FaLinkedinIn />
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 bg-green-600 hover:bg-green-700 flex items-center justify-center rounded-full transition"
+            >
+              <FaTwitter />
             </a>
           </div>
         </div>

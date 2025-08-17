@@ -18,6 +18,7 @@ import ProductDetail from "./Components/Main/ProductDetail/ProductDetail";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import JoinUs from "./Components/Pages/About/JoinUs";
+import HomeAuth from "./Components/Auth/HomeAuth";
 
 
 const AppContent = () => {
@@ -36,7 +37,7 @@ const AppContent = () => {
                 <div className="">
                   <Header />
                   <BannerCarousel />
-                  <AuthForm />
+                  <HomeAuth />
                   <Store />
                   <Testimonials />
                   <Contact />

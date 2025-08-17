@@ -21,7 +21,7 @@ const Profile = () => {
   if (!user) return <p className="text-center mt-10">Loading profile...</p>;
 
   return (
-    <section className="max-w-4xl mx-auto px-4 py-12 min-h-screen">
+    <section className="max-w-4xl mx-auto px-4 py-12 min-h-screen ">
       <div className="bg-white shadow-xl rounded-2xl p-8 md:flex items-center space-y-6 md:space-y-0 md:space-x-10">
         {/* Profile Image */}
         <div className="flex-shrink-0 w-full md:w-48 flex justify-center">

@@ -83,7 +83,10 @@ const UserProfile = () => {
   const { user, address, bank, kyc, nominee } = data;
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12 space-y-10 bg-gradient-to-b from-white via-slate-50 to-slate-100 rounded-2xl shadow-xl">
+    <div className="
+    
+    
+    max-w-7xl mx-auto px-6 py-12 space-y-10 bg-gradient-to-b from-white via-slate-50 to-slate-100 rounded-2xl shadow-xl">
       <h2 className="text-4xl font-bold text-indigo-700 mb-2 text-center">👤 User Profile</h2>
 
       {/* USER INFO */}

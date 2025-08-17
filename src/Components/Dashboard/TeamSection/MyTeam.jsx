@@ -29,7 +29,7 @@ const MyTeam = () => {
               <tr>
                 <th className="text-left px-4 py-2 border">#</th>
                 <th className="text-left px-4 py-2 border">Name</th>
-                <th className="text-left px-4 py-2 border">Username</th>
+                <th className="text-left px-4 py-2 border">User Id</th>
                 <th className="text-left px-4 py-2 border">Mobile</th>
                 <th className="text-left px-4 py-2 border">Joined</th>
               </tr>

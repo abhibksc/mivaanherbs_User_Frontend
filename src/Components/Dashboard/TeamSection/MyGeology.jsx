@@ -64,7 +64,7 @@ const MyGeology = () => {
 
   return (
     <div className="p-6 overflow-auto">
-      <h2 className="text-2xl font-bold mb-6 text-center">My MLM Tree</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center text-white">My MLM Tree</h2>
       <div className="tree-container">
         <ul className="tree">
           <TreeNode node={treeData} />
