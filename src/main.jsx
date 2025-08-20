@@ -17,7 +17,7 @@ const root = createRoot(rootElement);
 root.render(
   // <StrictMode>
   <BrowserRouter future={{ v7_relativeSplatPath: true }}>
-      <App className="scrollbar-hidden" />
+{/*       <App className="scrollbar-hidden" /> */}
     </BrowserRouter>
   // </StrictMode>
 );
